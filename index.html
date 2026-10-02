@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior AI Engineer | Professional Curriculum</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Elegant, rounded, professional icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS (CDN for standalone file) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Cormorant Garamond"', 'serif'],
+                        body: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Soft, elegant color palette
+                        cream: {
+                            50: '#FFFFFF',
+                            100: '#FDFBF7', // Main background
+                            200: '#F5F2EB', // Secondary background
+                            300: '#EBE5D9', // Borders
+                        },
+                        espresso: {
+                            900: '#2C2825', // Headings
+                            800: '#4A443F', // Body text
+                            700: '#6B635C', // Subtitles/Meta
+                        },
+                        blush: {
+                            100: '#F9ECEE', // Soft tag background
+                            400: '#E2B4BD', // Hover states
+                            500: '#C98A92', // Primary brand color
+                            600: '#A96870', // Active states
+                        },
+                        sage: {
+                            400: '#A3B8A8', // Completed state
+                            500: '#839D89',
+                        }
+                    },
+                    boxShadow: {
+                        'elegant': '0 10px 40px -10px rgba(201, 138, 146, 0.08)',
+                        'elegant-hover': '0 20px 50px -15px rgba(201, 138, 146, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth, elegant scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #EBE5D9; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C98A92; }
+        
+        body {
+            background-color: #FDFBF7;
+            color: #4A443F;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(235, 229, 217, 0.8);
+        }
+        
+        /* Card Hover Effects */
+        .course-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #FFFFFF;
+            border: 1px solid #EBE5D9;
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 138, 146, 0.3);
+        }
+
+        /* Custom Checkbox Animation */
+        .check-btn {
+            transition: all 0.3s ease;
+        }
+        .check-btn.completed {
+            background-color: #839D89;
+            color: white;
+            border-color: #839D89;
+        }
+        .completed-card {
+            opacity: 0.65;
+            background: #F5F2EB;
+            box-shadow: none !important;
+            transform: none !important;
+            border-color: transparent !important;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen pb-24">
+
+    <!-- Sticky Elegant Header -->
+    <header class="fixed top-0 w-full z-50 glass-header shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-display font-bold text-espresso-900 tracking-tight">
+                    Senior AI <span class="italic text-blush-500 font-normal">Engineering</span>
+                </h1>
+                <p class="text-sm font-body text-espresso-700 mt-1 uppercase tracking-widest font-medium">50-Day Production Masterclass</p>
+            </div>
+            
+            <!-- Elegant Progress Tracker -->
+            <div class="w-full md:w-1/3 flex flex-col gap-2">
+                <div class="flex justify-between text-sm font-medium">
+                    <span class="text-espresso-800 tracking-wide">Curriculum Progress</span>
+                    <span id="progress-text" class="text-blush-500 font-semibold">0%</span>
+                </div>
+                <div class="w-full h-1.5 bg-cream-300 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-blush-500 w-0 transition-all duration-1000 ease-out"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-6 pt-40">
+        
+        <!-- Controls: Soft Pill Filters & Search -->
+        <div class="mb-14 flex flex-col md:flex-row gap-6 items-center justify-between">
+            <div class="flex flex-wrap gap-2 md:gap-3" id="week-filters">
+                <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-blush-500 text-white shadow-md transition-all" data-week="all">Overview</button>
+                <!-- JS will inject Week buttons here -->
+            </div>
+            <div class="relative w-full md:w-72">
+                <i class="ph-light ph-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-espresso-700 text-lg"></i>
+                <input type="text" id="search-input" placeholder="Search topics..." 
+                       class="w-full bg-white border border-cream-300 text-espresso-900 text-sm rounded-full pl-11 pr-5 py-2.5 focus:outline-none focus:border-blush-400 focus:ring-2 focus:ring-blush-100 transition-all shadow-sm placeholder-espresso-700/50">
+            </div>
+        </div>
+
+        <!-- Dynamic Grid -->
+        <div id="roadmap-container" class="space-y-20">
+            <!-- JS will inject timeline here -->
+        </div>
+
+    </main>
+
+    <!-- Data & Application Logic -->
+    <script>
+        // 50-Day Roadmap Data (Highly professional, no fluff)
+        const courseData = [
+            // WEEK 1
+            { day: 1, week: 1, lab: false, title: "Modern Python AI Architecture", tags: ["Python", "Architecture"], topics: ["Strict type enforcement (typing, Optional)", "Data validation mapping with Pydantic v2", "Asynchronous core (asyncio, async/await)"] },
+            { day: 2, week: 1, lab: false, title: "API Integrations & SDKs", tags: ["Integrations", "Security"], topics: ["Initializing proprietary SDKs securely", "Secret lifecycle management (.env architecture)", "Handling rate limits & exponential backoff"] },
+            { day: 3, week: 1, lab: false, title: "State & Session Persistence", tags: ["Memory", "State"], topics: ["Handling LLM statelessness in production", "Managing multi-turn conversation roles", "Session-based storage mechanisms"] },
+            { day: 4, week: 1, lab: false, title: "Streaming & Latency", tags: ["Performance", "UX"], topics: ["Server-Sent Events (SSE) token streaming", "Time to First Token (TTFT) measurement", "Token usage tracking & dynamic costing"] },
+            { day: 5, week: 1, lab: true, title: "Lab: Async Production Assistant", tags: ["Practical Lab", "CLI"], topics: ["Build a terminal assistant with persistent state", "Implement token usage metrics tracking", "Handle API timeouts and auto-recovery"] },
+            
+            // WEEK 2
+            { day: 6, week: 2, lab: false, title: "Context Optimization", tags: ["Prompting", "Context"], topics: ["System prompt design patterns for agents", "Mitigating context degradation mid-conversation", "Native prompt caching architectures"] },
+            { day: 7, week: 2, lab: false, title: "Cognitive Reasoning Patterns", tags: ["Logic", "Reasoning"], topics: ["Zero-Shot vs. Few-Shot exemplar selection", "Chain-of-Thought (CoT) prompting techniques", "Self-Consistency and Step-back abstraction"] },
+            { day: 8, week: 2, lab: false, title: "Strict Structured Outputs", tags: ["Schemas", "JSON"], topics: ["Enforcing JSON mode via API parameters", "Strict schema compliance using JSON Schema", "Validation retries and automated model repair"] },
+            { day: 9, week: 2, lab: false, title: "Native Tool Calling", tags: ["Tooling", "Agents"], topics: ["Defining function schemas and parameter mapping", "Forcing tool choice vs. Auto execution models", "Parsing nested arguments from model responses"] },
+            { day: 10, week: 2, lab: true, title: "Lab: Multi-Tool Action Engine", tags: ["Practical Lab", "Pipeline"], topics: ["Extract unstructured text into validated models", "Execute multi-function calls against external APIs", "Handle runtime tool errors automatically"] },
+
+            // WEEK 3
+            { day: 11, week: 3, lab: false, title: "Vector Engineering Core", tags: ["Embeddings", "Data"], topics: ["Selecting embedding models (text-embedding-3)", "Configuring distance metrics accurately", "Dimensionality reduction for search speed"] },
+            { day: 12, week: 3, lab: false, title: "Production Chunking", tags: ["Processing", "NLP"], topics: ["Handling messy PDFs, DOCX, and Markdown", "Semantic vs. Recursive character chunking", "Parent-Child hierarchical chunking strategies"] },
+            { day: 13, week: 3, lab: false, title: "Local Vector Storage", tags: ["Storage", "Indexing"], topics: ["Configuring local indexing algorithms (HNSW)", "Implementing ChromaDB in Python pipelines", "Vector filtering using payload metadata"] },
+            { day: 14, week: 3, lab: false, title: "Enterprise Vector Databases", tags: ["Cloud", "Scale"], topics: ["Cloud vector deployment (Pinecone / Qdrant)", "Relational vector integration (pgvector)", "Multi-tenant namespace data isolation"] },
+            { day: 15, week: 3, lab: true, title: "Lab: Automated Data Ingestion", tags: ["Practical Lab", "Pipeline"], topics: ["Build a pipeline for technical docs extraction", "Chunk, embed, and index with dynamic metadata", "Execute filtered queries against a cloud DB"] },
+
+            // WEEK 4
+            { day: 16, week: 4, lab: false, title: "Baseline RAG Architecture", tags: ["Retrieval", "Flow"], topics: ["End-to-End RAG execution flow mapping", "Handling 'Information Not Found' constraints", "Automated source citation injection"] },
+            { day: 17, week: 4, lab: false, title: "Query Transformation", tags: ["Routing", "Search"], topics: ["Hypothetical Document Embeddings (HyDE)", "Multi-Query generation & sub-query breakdown", "Contextual query rewriting pipelines"] },
+            { day: 18, week: 4, lab: false, title: "Hybrid Search Integration", tags: ["Lexical", "Vectors"], topics: ["Keyword sparse retrieval (BM25) implementation", "Reciprocal Rank Fusion (RRF) algorithm", "Balancing dense vs. sparse scoring weights"] },
+            { day: 19, week: 4, lab: false, title: "Context Compression", tags: ["Reranking", "Pruning"], topics: ["Implementing Cross-Encoder architectures", "BGE-Reranker and Cohere Rerank APIs", "Dynamic context pruning before generation"] },
+            { day: 20, week: 4, lab: true, title: "Lab: Enterprise Hybrid RAG", tags: ["Practical Lab", "Architecture"], topics: ["Deploy a hybrid search pipeline (Dense + BM25)", "Integrate a Cross-Encoder for top-K accuracy", "Generate highly-grounded cited answers"] },
+
+            // WEEK 5
+            { day: 21, week: 5, lab: false, title: "Contextual Retrieval", tags: ["Advanced", "Scale"], topics: ["Chunk-level context injection methodologies", "Multi-vector indexing text representations", "Late-interaction token embeddings via ColBERT"] },
+            { day: 22, week: 5, lab: false, title: "Knowledge Graphs", tags: ["Entities", "Relations"], topics: ["Graph components: Entities & Relationships", "Graph DB setup and fundamental querying", "Extracting knowledge triplets via LLMs"] },
+            { day: 23, week: 5, lab: false, title: "GraphRAG Implementation", tags: ["Architecture", "Graphs"], topics: ["GraphRAG architectural design and philosophy", "Global community search vs. Local entity search", "Combining vector retrieval with graph logic"] },
+            { day: 24, week: 5, lab: false, title: "Multimodal RAG Systems", tags: ["Vision", "Audio"], topics: ["Processing visual docs with Vision-Language Models", "Multimodal embedding models (CLIP, ColPali)", "Extracting structured data from visual charts"] },
+            { day: 25, week: 5, lab: true, title: "Lab: GraphRAG Data Explorer", tags: ["Practical Lab", "Integration"], topics: ["Extract entity-relationships from raw text", "Store and traverse graph structures dynamically", "Answer multi-hop reasoning questions"] },
+
+            // WEEK 6
+            { day: 26, week: 6, lab: false, title: "Agent Cognitive Loops", tags: ["Agents", "ReAct"], topics: ["Reasoning + Acting (ReAct) operational cycles", "Plan-and-Solve deterministic routing strategies", "Self-reflection and error-correction loops"] },
+            { day: 27, week: 6, lab: false, title: "Stateful LangGraph", tags: ["Orchestration", "State"], topics: ["Graph theory basics: Nodes, Edges, State", "Managing immutable dictionary state updates", "Building cyclic and resilient execution graphs"] },
+            { day: 28, week: 6, lab: false, title: "Human-in-the-Loop (HITL)", tags: ["Safety", "Control"], topics: ["Conditional routing based on model decisions", "Interrupts and pause/resume execution states", "Human verification for sensitive tool usage"] },
+            { day: 29, week: 6, lab: false, title: "Model Context Protocol", tags: ["MCP", "Standards"], topics: ["Understanding MCP Client vs Server architecture", "Building custom MCP servers for internal data", "Connecting agents dynamically to MCP tools"] },
+            { day: 30, week: 6, lab: true, title: "Lab: MCP-Powered Analyst", tags: ["Practical Lab", "Agents"], topics: ["Build an agent with an external MCP server", "Enable multi-step research tool execution", "Implement a human-approval interrupt node"] },
+
+            // WEEK 7
+            { day: 31, week: 7, lab: false, title: "Multi-Agent Orchestration", tags: ["Topology", "Design"], topics: ["Supervisor vs. Peer-to-Peer network topologies", "Sub-agent task delegation and parsing patterns", "Inter-agent communication message schemas"] },
+            { day: 32, week: 7, lab: false, title: "Role-Based Workflows", tags: ["Frameworks", "Roles"], topics: ["Defining specialized Agents (Role, Goal, Backstory)", "Sequential vs. Hierarchical task dependencies", "Shared context and specific permission delegation"] },
+            { day: 33, week: 7, lab: false, title: "Conversational Swarms", tags: ["Routing", "Handoffs"], topics: ["Dynamic agent handoffs (Swarm methodology)", "Context isolation and conversation triage", "Preventing memory bloat across multiple agents"] },
+            { day: 34, week: 7, lab: false, title: "Secure Code Sandboxing", tags: ["Execution", "Security"], topics: ["Risks of unsandboxed LLM code execution", "Cloud microVM sandboxing environments", "Streaming sandbox output back to the agent"] },
+            { day: 35, week: 7, lab: true, title: "Lab: Autonomous SWE Team", tags: ["Practical Lab", "Swarms"], topics: ["Deploy a 3-agent pipeline (PM, Developer, QA)", "Execute agent-written code in a secure sandbox", "Iteratively fix bugs based on error logs"] },
+
+            // WEEK 8
+            { day: 36, week: 8, lab: false, title: "Tracing & Observability", tags: ["LLMOps", "Metrics"], topics: ["OpenTelemetry tracing standards for GenAI", "Instrumenting multi-hop node calls systematically", "Production cost attribution & alert pipelines"] },
+            { day: 37, week: 8, lab: false, title: "Automated Evaluation", tags: ["Testing", "Evals"], topics: ["LLM-as-a-Judge pairwise scoring methodology", "Evaluating RAG metrics (Faithfulness, Recall)", "Synthetic dataset generation for unit testing"] },
+            { day: 38, week: 8, lab: false, title: "Security & Guardrails", tags: ["Defenses", "Safety"], topics: ["Defending against Injections & Jailbreaks", "Input intent classification and strict moderation", "Automated PII redaction and output validation"] },
+            { day: 39, week: 8, lab: false, title: "Semantic Caching", tags: ["Caching", "Scale"], topics: ["Exact string match vs. Semantic vector caching", "Tuning similarity thresholds for cache hits", "Tiered API rate-limiting and quota algorithms"] },
+            { day: 40, week: 8, lab: true, title: "Lab: Production AI Gateway", tags: ["Practical Lab", "Gateway"], topics: ["Build a gateway fronting core LLM endpoints", "Integrate input guardrails and semantic caching", "Stream eval traces to an observability platform"] },
+
+            // WEEK 9
+            { day: 41, week: 9, lab: false, title: "Open-Source Ecosystem", tags: ["Models", "Weights"], topics: ["Base vs. Instruct foundational architectures", "Navigating repository model weights securely", "Enterprise licensing and data sovereignty laws"] },
+            { day: 42, week: 9, lab: false, title: "Local Inference Engines", tags: ["Local", "Hardware"], topics: ["CPU/GPU execution environments and orchestration", "Managing system prompts via configuration files", "VRAM calculation and hardware sizing rules"] },
+            { day: 43, week: 9, lab: false, title: "High-Throughput Serving", tags: ["vLLM", "Deploy"], topics: ["The Key-Value (KV) Cache memory bottleneck", "Continuous batching and memory management", "Deploying high-concurrency compatible servers"] },
+            { day: 44, week: 9, lab: false, title: "Quantization & Compression", tags: ["Efficiency", "Formats"], topics: ["Post-Training Quantization methodologies", "Selecting compression schemes (GGUF vs. AWQ)", "Latency vs. Capability trade-off profiling"] },
+            { day: 45, week: 9, lab: true, title: "Lab: Fast Local API Cluster", tags: ["Practical Lab", "Scaling"], topics: ["Deploy an instruct model locally with high throughput", "Benchmark tokens-per-second concurrency", "Route Python application traffic to local endpoints"] },
+
+            // WEEK 10
+            { day: 46, week: 10, lab: false, title: "Specialization Strategy", tags: ["Strategy", "Data"], topics: ["Prompting vs. RAG vs. Fine-Tuning matrix", "Dataset preparation and format standardization", "Identifying when fine-tuning is unnecessary"] },
+            { day: 47, week: 10, lab: false, title: "Parameter-Efficient Tuning", tags: ["PEFT", "Training"], topics: ["Low-Rank Adaptation (LoRA) rank mechanics", "Quantized LoRA (QLoRA) on consumer hardware", "Running supervised tuning pipelines efficiently"] },
+            { day: 48, week: 10, lab: false, title: "Alignment & Synthetic Data", tags: ["Alignment", "Quality"], topics: ["Direct Preference Optimization (DPO) principles", "Generating synthetic training pairs accurately", "Quality filtering and duplicate data purging"] },
+            { day: 49, week: 10, lab: false, title: "Reasoning Paradigms", tags: ["Trends", "Future"], topics: ["Test-Time Compute vs. Pre-training scaling", "Handling internal Chain-of-Thought (CoT) flows", "Architectural adjustments for deep-thinking AI"] },
+            { day: 50, week: 10, lab: true, title: "Capstone: System Defense", tags: ["Final Project", "Design"], topics: ["Design an end-to-end GraphRAG + Multi-Agent system", "Identify failure modes, cost limits, and bottlenecks", "Finalize deployment and production checklists"] },
+        ];
+
+        // State Management
+        let completedDays = JSON.parse(localStorage.getItem('aiRoadmapProgressProfessional')) || [];
+
+        // DOM Elements
+        const container = document.getElementById('roadmap-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const searchInput = document.getElementById('search-input');
+        const weekFiltersContainer = document.getElementById('week-filters');
+
+        // Group data by week
+        const weeksData = {};
+        courseData.forEach(item => {
+            if (!weeksData[item.week]) weeksData[item.week] = [];
+            weeksData[item.week].push(item);
+        });
+
+        // Initialize App
+        function init() {
+            renderWeekFilters();
+            renderRoadmap('all', '');
+            updateProgress();
+        }
+
+        // Generate Elegant Week Filters
+        function renderWeekFilters() {
+            for (let i = 1; i <= 10; i++) {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-espresso-800 border border-cream-300 hover:border-blush-400 hover:text-blush-500 transition-all`;
+                btn.dataset.week = i;
+                btn.innerText = `Week ${i}`;
+                btn.onclick = () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('bg-blush-500', 'text-white', 'border-transparent', 'shadow-md');
+                        b.classList.add('bg-white', 'text-espresso-800', 'border-cream-300');
+                    });
+                    btn.classList.add('bg-blush-500', 'text-white', 'border-transparent', 'shadow-md');
+                    btn.classList.remove('bg-white', 'text-espresso-800', 'border-cream-300');
+                    renderRoadmap(i, searchInput.value.toLowerCase());
+                };
+                weekFiltersContainer.appendChild(btn);
+            }
+            
+            // Setup "Overview" button
+            const allBtn = document.querySelector('[data-week="all"]');
+            allBtn.onclick = () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-blush-500', 'text-white', 'border-transparent', 'shadow-md');
+                    b.classList.add('bg-white', 'text-espresso-800', 'border-cream-300');
+                });
+                allBtn.classList.add('bg-blush-500', 'text-white', 'border-transparent', 'shadow-md');
+                allBtn.classList.remove('bg-white', 'text-espresso-800', 'border-cream-300');
+                renderRoadmap('all', searchInput.value.toLowerCase());
+            };
+        }
+
+        function getActiveWeek() {
+            return document.querySelector('.filter-btn.bg-blush-500').dataset.week;
+        }
+
+        // Render Cards with Elegant UI
+        function renderRoadmap(filterWeek, searchQuery) {
+            container.innerHTML = '';
+            
+            Object.keys(weeksData).forEach(week => {
+                if (filterWeek !== 'all' && filterWeek != week) return;
+                
+                const filteredDays = weeksData[week].filter(day => {
+                    if (!searchQuery) return true;
+                    return day.title.toLowerCase().includes(searchQuery) || 
+                           day.topics.join(' ').toLowerCase().includes(searchQuery) ||
+                           day.tags.join(' ').toLowerCase().includes(searchQuery);
+                });
+
+                if (filteredDays.length === 0) return;
+
+                const weekTitles = ["Foundation & Integrations", "Agents & Structured Data", "Vector Data Engineering", "Production RAG Pipelines", "GraphRAG & Multimodal", "Orchestration & State", "Multi-Agent Systems", "LLMOps & Guardrails", "High-Performance Serving", "Fine-Tuning & Horizons"];
+                
+                // Elegant Week Header
+                const weekHtml = document.createElement('div');
+                weekHtml.innerHTML = `
+                    <div class="flex flex-col mb-8 mt-16 first:mt-0">
+                        <span class="text-xs font-bold tracking-[0.2em] uppercase text-blush-500 mb-2">Phase 0${week}</span>
+                        <h2 class="text-3xl font-display font-semibold text-espresso-900">${weekTitles[week-1]}</h2>
+                        <div class="w-12 h-[2px] bg-cream-300 mt-4"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" id="week-grid-${week}"></div>
+                `;
+                container.appendChild(weekHtml);
+
+                const grid = document.getElementById(`week-grid-${week}`);
+
+                // Render Day Cards
+                filteredDays.forEach(data => {
+                    const isCompleted = completedDays.includes(data.day);
+                    
+                    const tagHtml = data.tags.map(tag => 
+                        `<span class="text-[11px] font-medium tracking-wide text-espresso-700 bg-cream-200 px-3 py-1 rounded-full">${tag}</span>`
+                    ).join('');
+                    
+                    const topicsHtml = data.topics.map(topic => `
+                        <li class="flex items-start gap-3 text-[14px] text-espresso-800 leading-relaxed mb-3 last:mb-0">
+                            <i class="ph-light ph-check-circle text-blush-400 text-lg flex-shrink-0 mt-[2px]"></i>
+                            <span>${topic}</span>
+                        </li>
+                    `).join('');
+                    
+                    const badgeTheme = data.lab ? 'text-espresso-900 bg-cream-300' : 'text-blush-600 bg-blush-100';
+
+                    const card = document.createElement('div');
+                    card.className = `course-card relative rounded-3xl p-6 flex flex-col shadow-elegant hover:shadow-elegant-hover ${isCompleted ? 'completed-card' : ''}`;
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider ${badgeTheme} rounded-full font-body">Day ${data.day}</span>
+                            <button onclick="toggleDay(${data.day})" class="check-btn w-8 h-8 rounded-full border-2 border-cream-300 flex items-center justify-center hover:border-blush-400 ${isCompleted ? 'completed' : 'text-transparent hover:text-blush-400'}" title="Mark Complete">
+                                <i class="ph-bold ph-check text-sm"></i>
+                            </button>
+                        </div>
+                        
+                        <h3 class="font-display font-bold text-xl text-espresso-900 mb-5 leading-tight">${data.title}</h3>
+                        <ul class="flex-grow z-10 mb-8">${topicsHtml}</ul>
+                        
+                        <div class="flex flex-wrap gap-2 mt-auto pt-5 border-t border-cream-200">
+                            ${tagHtml}
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+            
+            // Re-initialize Phosphor icons if needed (they load automatically, but just in case)
+            if(window.PhosphorIcons) window.PhosphorIcons.init();
+        }
+
+        // Toggle Progress Logic
+        window.toggleDay = function(dayNumber) {
+            if (completedDays.includes(dayNumber)) {
+                completedDays = completedDays.filter(d => d !== dayNumber);
+            } else {
+                completedDays.push(dayNumber);
+            }
+            
+            localStorage.setItem('aiRoadmapProgressProfessional', JSON.stringify(completedDays));
+            renderRoadmap(getActiveWeek(), searchInput.value.toLowerCase());
+            updateProgress();
+        };
+
+        function updateProgress() {
+            const total = 50;
+            const completed = completedDays.length;
+            const percent = Math.round((completed / total) * 100);
+            
+            progressBar.style.width = `${percent}%`;
+            progressText.innerText = `${percent}% Completed`;
+            
+            if (percent === 100) {
+                progressBar.classList.remove('bg-blush-500');
+                progressBar.classList.add('bg-sage-500');
+                progressText.classList.remove('text-blush-500');
+                progressText.classList.add('text-sage-500');
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('search-input').addEventListener('input', (e) => renderRoadmap(getActiveWeek(), e.target.value.toLowerCase()));
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
